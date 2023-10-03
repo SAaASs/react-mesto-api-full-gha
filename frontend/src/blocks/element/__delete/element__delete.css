@@ -1,0 +1,17 @@
+.element__delete {
+    width: 18px;
+    height: 19px;
+    background-image: url("/public/images/Group.svg");
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: opacity 250ms ease-in-out;
+}
+.element__delete:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}

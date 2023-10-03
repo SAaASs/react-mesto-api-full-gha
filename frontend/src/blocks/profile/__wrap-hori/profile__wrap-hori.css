@@ -1,0 +1,12 @@
+.profile__wrap-hori {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+@media (max-width: 880px) {
+    .profile__wrap-hori {
+        display: block;
+        text-align: center;
+        position: relative;
+    }
+}

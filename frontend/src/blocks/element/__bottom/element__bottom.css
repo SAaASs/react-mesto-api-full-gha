@@ -1,0 +1,13 @@
+.element__bottom {
+    display: flex;
+    justify-content: space-between;
+    width: 246px;
+    margin: auto;
+    margin-top: 20px;
+    align-items: center;
+}
+@media (max-width: 880px) {
+    .element__bottom {
+        margin-bottom: 32px;
+    }
+}

@@ -1,0 +1,9 @@
+.register__form {
+  display: flex;
+  flex-direction: column;
+  width: 430px;
+  justify-content: space-around;
+  align-items: center;
+  background-color: black;
+  border: none;
+}

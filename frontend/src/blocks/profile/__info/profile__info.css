@@ -1,0 +1,9 @@
+.profile__info {
+    display: flex;
+    align-items: center;
+}
+@media (max-width: 880px) {
+    .profile__info {
+        display: block;
+    }
+}

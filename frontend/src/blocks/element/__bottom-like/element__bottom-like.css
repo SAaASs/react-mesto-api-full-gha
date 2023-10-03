@@ -1,0 +1,13 @@
+.element__bottom-like:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+.element__bottom-like {
+    width: 22px;
+    height: 19px;
+    background-image: url("/public/images/Vector.svg");
+    border: none;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+}

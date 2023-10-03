@@ -1,0 +1,4 @@
+.profile__wrap-vert {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,21 @@
+.popup__title {
+    display: flex;
+    width: 358px;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    justify-content: flex-start;
+    padding-bottom: 54px;
+    padding-top: 34px;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 29px;
+}
+@media (max-width: 880px) {
+    .popup__title {
+        width: 238px;
+        font-size: 18px;
+        line-height: 22px;
+        padding-bottom: 75px;
+        padding-top: 25px;
+    }
+}

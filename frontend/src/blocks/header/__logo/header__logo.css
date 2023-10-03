@@ -1,0 +1,15 @@
+.header__logo {
+  width: 142px;
+  height: 33px;
+  padding-bottom: 45px;
+  background-image: url("/public/images/Vector.png");
+  background-repeat: no-repeat;
+}
+@media (max-width: 880px) {
+  .header__logo {
+    padding-left: 27px;
+    padding-bottom: 31.6px;
+    height: 25px;
+    width: 104px;
+  }
+}
