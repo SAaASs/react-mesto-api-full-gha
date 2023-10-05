@@ -14,17 +14,22 @@ const { auth } = require('./middlewares/auth');
 const { userRouter } = require('./routes/users');
 const { cardsRouter } = require('./routes/cards');
 const { errHandler } = require('./middlewares/errHandler');
-const { cors } = require('./middlewares/cors');
+const cors = require('cors');
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 // Слушаем 3000 порт
-const { PORT = 3000 } = process.env;
+const { PORT = 3001 } = process.env;
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
 const app = express();
 app.use(bodyParser.json()); // для собирания JSON-формата
 app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 app.use(cookieParser());
-app.use(cors);
-app.post('/signin', loginUserValidator, login);
-app.post('/signup', createUserValidator, createUser);
+app.use(cors());
+app.post('/signin', cors(corsOptions), loginUserValidator, login);
+app.post('/signup', cors(corsOptions), createUserValidator, createUser);
 app.use(auth);
 app.use('/users/', userRouter);
 app.use('/cards/', cardsRouter);

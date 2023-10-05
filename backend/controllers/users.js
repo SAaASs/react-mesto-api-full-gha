@@ -119,8 +119,7 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, 'some-secret-key', {
         expiresIn: '7d',
       });
-      res.cookie('mestoAuthCookie', token, { httpOnly: true });
-      res.send({ message: 'Авторизация прошла успешно' });
+      res.status(200).send({ token: token });
     })
     .catch((err) => {
       next(err);

@@ -51,7 +51,9 @@ module.exports.unlikeCard = (req, res, next) => {
 module.exports.getAllCards = (req, res, next) => {
   console.log('req.user', req.user);
   Card.find({})
-    .then((card) => res.send({ data: card }))
+    .then((card) => {
+      res.send(card);
+    })
     .catch((err) => {
       next(err);
     });

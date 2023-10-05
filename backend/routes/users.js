@@ -11,11 +11,26 @@ const {
   patchUserInfo,
   patchUserAvatar,
 } = require('../controllers/users');
+const cors = require('cors');
 
-userRouter.get('/', getAllUsers);
-userRouter.get('/me', getCurrentUser);
-userRouter.get('/:userId', getUserValidator, getUserById);
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+userRouter.get('/', cors(corsOptions), getAllUsers);
+userRouter.get('/me', cors(corsOptions), getCurrentUser);
+userRouter.get('/:userId', cors(corsOptions), getUserValidator, getUserById);
 
-userRouter.patch('/me', patchProfileValidator, patchUserInfo);
-userRouter.patch('/me/avatar', patchAvatarValidator, patchUserAvatar);
+userRouter.patch(
+  '/me',
+  cors(corsOptions),
+  patchProfileValidator,
+  patchUserInfo,
+);
+userRouter.patch(
+  '/me/avatar',
+  cors(corsOptions),
+  patchAvatarValidator,
+  patchUserAvatar,
+);
 module.exports = { userRouter };

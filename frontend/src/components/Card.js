@@ -1,12 +1,20 @@
-import React, { useEffect } from "react";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import React, { useEffect } from 'react';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 export function Card({ card, clickHandler, likeHandler, onDeletePopupOpen }) {
   const user = React.useContext(CurrentUserContext);
-  const isLiked = card?.likes?.some((i) => i._id === user?._id);
+  let isLiked;
+  for (let i = 0; i <= card.likes.length; i++) {
+    console.log(card.likes[i]);
+    if (card.likes[i] == user._id) {
+      isLiked = true;
+      break;
+    }
+  }
   const cardLikeButtonClassName = `element__bottom-like ${
-    isLiked && "element__bottom-like_liked"
+    isLiked && 'element__bottom-like_liked'
   }`;
-  const isBelongToCurrentUser = user?._id === card?.owner?._id;
+  const isBelongToCurrentUser = user._id == card.owner;
+
   return (
     <div className="element">
       {isBelongToCurrentUser && (

@@ -1,15 +1,15 @@
-import { authApi } from "../utils/AuthAPI";
-import { AuthPopup } from "./AuthPopup";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { authApi } from '../utils/AuthAPI';
+import { AuthPopup } from './AuthPopup';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 export function Register({ currentUser, setCurrentUser }) {
-  const [passwordValue, setPasswordValue] = React.useState("");
-  const [emailValue, setEmailValue] = React.useState("");
+  const [passwordValue, setPasswordValue] = React.useState('');
+  const [emailValue, setEmailValue] = React.useState('');
   const [ansType, setAnsType] = React.useState(false);
   const [isAuthPopupOpened, setIsAuthPopupOpened] = React.useState(false);
   React.useEffect(() => {
-    setEmailValue("");
-    setPasswordValue("");
+    setEmailValue('');
+    setPasswordValue('');
   }, []);
   const navigate = useNavigate();
   function handleEmailChange(e) {
@@ -35,13 +35,14 @@ export function Register({ currentUser, setCurrentUser }) {
             authApi
               .RegMe(emailValue, passwordValue)
               .then((value) => {
+                console.log(value);
                 setAnsType(true);
                 setIsAuthPopupOpened(true);
-                currentUser._id = value.data._id;
+                currentUser._id = value._id;
                 setCurrentUser(currentUser);
                 setTimeout(() => {
-                  navigate("/sign-in");
-                }, "1000");
+                  navigate('/sign-in');
+                }, '1000');
 
                 console.log(value);
               })
@@ -55,7 +56,7 @@ export function Register({ currentUser, setCurrentUser }) {
           className="register__form"
         >
           <fieldset
-            style={{ border: "none" }}
+            style={{ border: 'none' }}
             id="registerFields"
             className="register__fields"
           >
@@ -96,7 +97,7 @@ export function Register({ currentUser, setCurrentUser }) {
           <button
             className="header__button"
             onClick={() => {
-              navigate("/sign-in");
+              navigate('/sign-in');
             }}
           >
             Войти

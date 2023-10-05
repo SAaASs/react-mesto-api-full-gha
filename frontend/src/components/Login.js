@@ -1,16 +1,17 @@
-import { authApi } from "../utils/AuthAPI";
-import { AuthPopup } from "./AuthPopup";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { authApi } from '../utils/AuthAPI';
+import { api } from '../utils/API';
+import { AuthPopup } from './AuthPopup';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 export function Login({ setCurrentEmail, setIsLoggedIn }) {
-  const [passwordValue, setPasswordValue] = React.useState("");
-  const [emailValue, setEmailValue] = React.useState("");
+  const [passwordValue, setPasswordValue] = React.useState('');
+  const [emailValue, setEmailValue] = React.useState('');
   const [ansType, setAnsType] = React.useState(false);
   const navigate = useNavigate();
   const [isAuthPopupOpened, setIsAuthPopupOpened] = React.useState(false);
   React.useEffect(() => {
-    setEmailValue("");
-    setPasswordValue("");
+    setEmailValue('');
+    setPasswordValue('');
   }, []);
 
   function handleEmailChange(e) {
@@ -36,12 +37,17 @@ export function Login({ setCurrentEmail, setIsLoggedIn }) {
             authApi
               .getToken(emailValue, passwordValue)
               .then((value) => {
-                localStorage.setItem("mestoReactToken", value.token);
+                console.log('getTokenThen', value);
+                api._headers = {
+                  'Content-Type': 'application/json',
+                  authorisation: `Bearer ${value.token}`,
+                };
+                localStorage.setItem('mestoReactToken', value.token);
                 return authApi.authMe(value.token);
               })
               .then((value) => {
-                setCurrentEmail(value.data.email);
-                navigate("/");
+                setCurrentEmail(value.email);
+                navigate('/');
                 setIsLoggedIn(true);
               })
               .catch((err) => {
@@ -52,7 +58,7 @@ export function Login({ setCurrentEmail, setIsLoggedIn }) {
           className="register__form"
         >
           <fieldset
-            style={{ border: "none" }}
+            style={{ border: 'none' }}
             id="registerFields"
             className="register__fields"
           >

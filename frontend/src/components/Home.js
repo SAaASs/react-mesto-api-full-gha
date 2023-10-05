@@ -1,21 +1,21 @@
-import { Main } from "./Main";
-import { Footer } from "./Footer";
-import { PopupWithForm } from "./PopupWithForm";
-import { AddPopup } from "./AddPopup";
-import React, { useEffect } from "react";
-import { ImagePopup } from "./ImagePopup";
-import { api } from "../utils/API";
-import { Card } from "./Card";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import { AvatarPopup } from "./AvatarPopup";
-import { EditPopup } from "./EditPopup";
+import { Main } from './Main';
+import { Footer } from './Footer';
+import { PopupWithForm } from './PopupWithForm';
+import { AddPopup } from './AddPopup';
+import React, { useEffect } from 'react';
+import { ImagePopup } from './ImagePopup';
+import { api } from '../utils/API';
+import { Card } from './Card';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { AvatarPopup } from './AvatarPopup';
+import { EditPopup } from './EditPopup';
 export function Home({ currentUser, setCurrentUser }) {
   const [editPopupOpened, setEditPopupOpened] = React.useState(false);
-  const [doomedCard, setDoomedCard] = React.useState("");
+  const [doomedCard, setDoomedCard] = React.useState('');
   const [addPopupOpened, setaddPopupOpened] = React.useState(false);
   const [avatarPopupOpened, setavatarPopupOpened] = React.useState(false);
   const [cards, setCards] = React.useState([
-    { name: "name", link: "link", likes: [], _id: 0 },
+    { name: 'name', link: 'link', likes: [], _id: 0 },
   ]);
   const [selectedCard, setSelectedCard] = React.useState(null);
   React.useEffect(() => {
@@ -30,7 +30,7 @@ export function Home({ currentUser, setCurrentUser }) {
   }, []);
   React.useEffect(() => {
     setTimeout(() => {
-      document.body.classList.remove("no-transition");
+      document.body.classList.remove('no-transition');
     }, 1000);
   }, []);
 
@@ -47,7 +47,14 @@ export function Home({ currentUser, setCurrentUser }) {
   }, []);
 
   function handleCardLike(card) {
-    const isLiked = card?.likes?.some((i) => i._id === currentUser?._id);
+    let isLiked;
+    for (let i = 0; i <= card.likes.length; i++) {
+      console.log(card.likes[i]);
+      if (card.likes[i] == currentUser._id) {
+        isLiked = true;
+        break;
+      }
+    }
     api
       .updateLike(card._id, isLiked)
       .then((newCard) => {
@@ -125,24 +132,24 @@ export function Home({ currentUser, setCurrentUser }) {
           }}
         ></AvatarPopup>
         <PopupWithForm
-          isOpen={doomedCard != ""}
+          isOpen={doomedCard != ''}
           submitHandler={(e) => {
             e.preventDefault();
             handleCardDelete(doomedCard)
               .then(() => {
                 setCards(cards.filter((card) => card != doomedCard));
-                setDoomedCard("");
+                setDoomedCard('');
               })
               .catch((err) => {
                 console.log(err);
               });
           }}
           onClose={() => {
-            setDoomedCard("");
+            setDoomedCard('');
           }}
-          buttonText={"Да"}
-          popupTitle={"Вы уверены?"}
-          formName={"Delete"}
+          buttonText={'Да'}
+          popupTitle={'Вы уверены?'}
+          formName={'Delete'}
         ></PopupWithForm>
         <ImagePopup
           card={selectedCard}
