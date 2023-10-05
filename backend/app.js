@@ -21,7 +21,7 @@ const corsOptions = {
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 // Слушаем 3000 порт
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
 const app = express();
 app.use(bodyParser.json()); // для собирания JSON-формата
