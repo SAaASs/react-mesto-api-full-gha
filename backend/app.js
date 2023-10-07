@@ -14,6 +14,7 @@ const { auth } = require('./middlewares/auth');
 const { userRouter } = require('./routes/users');
 const { cardsRouter } = require('./routes/cards');
 const { errHandler } = require('./middlewares/errHandler');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('cors');
 
 const corsOptions = {
@@ -28,6 +29,12 @@ app.use(bodyParser.json()); // для собирания JSON-формата
 app.use(bodyParser.urlencoded({ extended: true })); // для приёма веб-страниц внутри POST-запроса
 app.use(cookieParser());
 app.use(cors());
+app.use(requestLogger);
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 app.post('/signin', cors(corsOptions), loginUserValidator, login);
 app.post('/signup', cors(corsOptions), createUserValidator, createUser);
 app.use(auth);
@@ -36,6 +43,7 @@ app.use('/cards/', cardsRouter);
 app.use('*', (req, res, next) => {
   next(new NotFoundError('Выбранного пути не существует'));
 });
+app.use(errorLogger);
 app.use(errors());
 app.use(errHandler);
 
