@@ -37,7 +37,7 @@ app.get('/crash-test', () => {
 });
 app.post('/signin', cors(corsOptions), loginUserValidator, login);
 app.post('/signup', cors(corsOptions), createUserValidator, createUser);
-//app.use(auth);
+app.use(auth);
 app.use('/users/', userRouter);
 app.use('/cards/', cardsRouter);
 app.use('*', (req, res, next) => {

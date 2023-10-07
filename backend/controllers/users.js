@@ -127,6 +127,7 @@ module.exports.login = (req, res, next) => {
 };
 
 module.exports.getCurrentUser = (req, res, next) => {
+  console.log(req.user);
   User.findById(req.user._id)
     .then((user) => {
       res.send(user);
