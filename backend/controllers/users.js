@@ -119,7 +119,7 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, 'some-secret-key', {
         expiresIn: '7d',
       });
-      res.status(200).send({ token: token });
+      res.status(200).send({ token: `Bearer ${token}` });
     })
     .catch((err) => {
       next(err);
