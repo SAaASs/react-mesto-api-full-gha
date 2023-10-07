@@ -1,3 +1,4 @@
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const UnauthorisedError = require('../errors/UnauthorisedError');
 
@@ -15,7 +16,7 @@ module.exports.auth = (req, res, next) => {
   let payload;
   console.log('test', token);
   try {
-    payload = jwt.verify(token, 'some-secret-key');
+    payload = jwt.verify(token, process.env.JWT_SECRET);
   } catch (err) {
     console.log('2nd err');
     next(new UnauthorisedError('Неправильный логин или пароль'));
