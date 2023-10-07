@@ -18,7 +18,7 @@ function App() {
     if (localStorage.getItem('mestoReactToken')) {
       api._headers = {
         'Content-Type': 'application/json',
-        authorisation: `${localStorage.getItem('mestoReactToken')}`,
+        authorisation: `Bearer ${localStorage.getItem('mestoReactToken')}`,
       };
       api
         .getUser(localStorage.getItem('mestoReactToken'))

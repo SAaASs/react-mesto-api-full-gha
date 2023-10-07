@@ -40,7 +40,7 @@ export function Login({ setCurrentEmail, setIsLoggedIn }) {
                 console.log('getTokenThen', value);
                 api._headers = {
                   'Content-Type': 'application/json',
-                  authorisation: `${value.token}`,
+                  authorisation: `Bearer ${value.token}`,
                 };
                 localStorage.setItem('mestoReactToken', value.token);
                 return authApi.authMe(value.token);
