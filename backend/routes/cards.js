@@ -13,7 +13,7 @@ const {
 const cors = require('cors');
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'https://sasdom.students.nomoredomainsrocks.ru',
   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 cardsRouter.get('/', cors(corsOptions), getAllCards);

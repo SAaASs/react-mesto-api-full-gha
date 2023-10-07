@@ -45,7 +45,7 @@ export class AuthAPI {
   }
 }
 export const authApi = new AuthAPI({
-  baseUrl: 'http://localhost:3001/',
+  baseUrl: 'https://api.sasdom.students.nomoredomainsrocks.ru',
   headers: {
     'Content-Type': 'application/json',
   },

@@ -78,7 +78,7 @@ export class API {
 }
 
 export const api = new API({
-  baseUrl: 'http://localhost:3001/',
+  baseUrl: 'https://api.sasdom.students.nomoredomainsrocks.ru/',
   headers: {
     'Content-Type': 'application/json',
   },
