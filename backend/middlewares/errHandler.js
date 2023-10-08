@@ -19,11 +19,10 @@ module.exports.loginUserValidator = celebrate({
 });
 module.exports.patchProfileValidator = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30), //Если сделать оба поля обязательными, нельзя будет изменить только 1 поле из 2, по заданию и name и about изменяются 1 контроллером
-    about: Joi.string().min(2).max(30), //Если сделать оба поля обязательными, нельзя будет изменить только 1 поле из 2, по заданию и name и about изменяются 1 контроллером
+    name: Joi.string().required().min(2).max(30),
+    about: Joi.string().required().min(2).max(30),
   }),
 });
-//Если сделать оба поля обязательными, нельзя будет изменить только 1 поле из 2, по заданию и name и about изменяются 1 контроллером
 module.exports.patchAvatarValidator = celebrate({
   body: Joi.object().keys({
     avatar: Joi.string()
@@ -54,7 +53,6 @@ module.exports.getUserValidator = celebrate({
   }),
 });
 module.exports.errHandler = (err, req, res, next) => {
-  console.log(err);
-  res.status(err.statusCode || 500).send({ message: err.message || '' });
+  res.status(500).send({ message: 'Произошла ошибка сервера' });
   next();
 };
