@@ -53,6 +53,10 @@ module.exports.getUserValidator = celebrate({
   }),
 });
 module.exports.errHandler = (err, req, res, next) => {
-  res.status(500).send({ message: 'Произошла ошибка сервера' });
+  if (err.statusCode == 500 || !err.statusCode) {
+    res.status(500).send({ message: 'Неизвестная ошибка сервера' });
+  } else {
+    res.status(err.statusCode).send({ message: err.message });
+  }
   next();
 };
